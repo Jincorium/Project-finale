@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manga Earthquake Prediction</title>
+  <link rel="stylesheet" href="Portfolio.css" />
+<script type="module" src="./Portfolio.js"></script>
+</head>
+<body>
+    <div id="warmOverlay"></div>
+  <header>
+    <h1>Independent yet biased</h1>
+    <div class="header-support">
+    <h1 class="support-text">Support our biases</h1>
+     <a href="https://www.donationalerts.com/" target="_blank">
+    <img src="https://www.donationalerts.com/img/header/logo.svg" alt="Donate" class="donation-icon" />
+    </a>
+  </div>
+    <div id="modeButtons">
+  <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button> <!-- Tlačítko pro přepnutí tmavého režimu -->
+
+</div>
+  </header>
+
+      <aside id="sidebarSecondary" class="sidebar-hidden">   <!-- Skrytý boční panel -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Recent</a></li>  <!-- Odkaz na hlavní stránku -->
+      <li><a href="https://www.instagram.com/barackobama/" target="_blank" rel="noopener noreferrer">About US</a></li>   <!-- Odkaz na Instagram -->
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="qr-wrapper">
+    <img src="qr-code.png" alt="QR Code" class="qr-image" /> <!-- QR kód na podporu nebo kontakt -->
+  </div>
+</aside>
+</div>
+    <div class="side-actions top"> <!-- Tlačítka pro akce v horní části -->
+        <a href="index.html" class="side-button" title="Home">🏠</a>
+        <button id="listenButton" class="side-button" title="Listen">🔊</button>
+        <button id="likeButton" class="side-button" title="Like this article">❤️</button>
+        <button id="commentButton" class="side-button" title="Add Comment">💬</button>
+        <button id="sidebarToggle" class="side-button" title="Toggle Sidebar">☰</button>
+    </div>
+
+
+  <main class="article-page"> <!-- Hlavní obsah stránky -->
+    <div id="article-wrapper" data-article-id="manga"> <!-- Wrapper pro článek -->
+      <div id="article-content">
+        <span id="reading-time"></span>
+        <h2 class="headline">Japan Earthquake Prediction Manga Sparks Widespread Anxiety</h2>
+        <div class="meta">
+          <span class="author">By Independent Observer</span> •
+          <span class="date">July 7, 2025</span>
+        </div>
+
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapers.com%2Fimages%2Fhd%2Fearthquake-pictures-hcpt39kqce9pvjr6.jpg&f=1&nofb=1&ipt=858a6ce690e2878dd78c71952005b5743a9156d53a4012a31b4266eafc551d9c" alt="Earthquake Manga" class="article-image" />
+
+        <p><strong>A viral manga that predicts a devastating earthquake in Japan has caused alarm across social media, leading to widespread concern and speculation.</strong></p>
+
+        <p>The manga, titled <em>"Tokyo Magnitude 9.1"</em>, portrays an apocalyptic scenario in which a massive quake strikes the Japanese capital. While the story is fictional, many online users are questioning whether the prophecy might come true, especially as Japan remains one of the world’s most seismically active nations.</p>
+
+        <p>Some readers have cited eerie coincidences between the story’s timeline and real-life seismic activity. The manga's portrayal of infrastructure collapse, panic, and emergency response has resonated deeply with readers still haunted by the 2011 Tohoku earthquake and tsunami.</p>
+
+        <h3>Public Reaction and Official Response</h3>
+        <p>Government officials have urged citizens to remain calm and to rely on scientific data rather than fictional media. “While disaster preparedness is always encouraged, we should not confuse entertainment with evidence,” said a spokesperson from Japan’s Meteorological Agency.</p>
+
+        <p>Meanwhile, the manga’s creators have emphasized that their work is purely speculative and meant to raise awareness—not fear.</p>
+
+        <blockquote>
+          "It’s not a prophecy—it’s a precautionary tale," the author clarified in a recent post.
+        </blockquote>
+
+        <h3>Preparedness in a Country on Edge</h3>
+        <p>Japan’s meticulous earthquake planning and public education campaigns have long been regarded as models worldwide. However, the manga's popularity has reignited discussions about whether the public is truly ready for a worst-case scenario.</p>
+
+        <p>As the manga continues to trend, authorities are doubling down on their messaging: stay informed, stay ready—but don’t panic.</p>
+
+        <div class="tags"> <!-- Tagy pro článek -->
+          <span class="tag">#Japan</span>
+          <span class="tag">#Earthquake</span>
+          <span class="tag">#Manga</span>
+          <span class="tag">#Preparedness</span>
+        </div>
+      </div>  <!-- end article-content -->
+    </div>  <!-- end article-wrapper -->
+    <hr class="comment-divider" />
+
+    <div id="commentModal" class="comment-modal hidden"> <!-- Modal na komentáře -->
+    <div class="comment-box">
+        <h3>Leave a Comment</h3>
+        <label>
+        Name or Nickname (max 69 chars)
+        <input type="text" id="commentName" maxlength="69" placeholder="Your name or nickname" />
+        </label>
+        <label>
+        Comment (max 250 chars)
+        <textarea id="commentText" maxlength="250" placeholder="Write your comment here..."></textarea>
+        </label>
+        <div class="comment-buttons">
+        <button id="submitComment">Submit</button>
+        <button id="cancelComment">Cancel</button>
+        </div>
+    </div>
+    </div>
+
+    <div id="commentsSection" class="comments-section"> <!-- Sekce pro zobrazení komentářů -->
+    <h2 class="comments-heading">Comments</h2>
+    <div id="commentList"></div>
+    </div>
+    </div>
+  </main>
+</body>
+</html>
