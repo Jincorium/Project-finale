@@ -21,7 +21,7 @@ function showLoginUI() {
 
 onUserStateChanged(user => {
   if (user) {
-    if (user.email === "admin@example.com") {  // replace with your admin email
+    if (user.email === "admin@bonter.com") {  // replace with your admin email
       showAdminUI();
     } else {
       showNormalUI();
