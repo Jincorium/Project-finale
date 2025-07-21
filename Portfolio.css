@@ -144,25 +144,7 @@ font-weight: 700;
   width: auto;
   margin-left: 1rem;
 }
-/*
-#adminPanel, #userPanel, #loginForm {
-  margin-top: 10px;
-  padding: 10px;
-    background-color: #f0f0f0;
-  border-radius: 6px;
-}
 
-#adminPanel h2, #userPanel h2, #loginForm h2 {
-  margin-bottom: 10px;
-}
-
-#loginForm input {
-  display: block;
-  margin-bottom: 8px;
-  padding: 8px;
-  width: 100%;
-  max-width: 250px;
-}*/
 
 
 /* Kontejner se postranním panelem a hlavním obsahem */
