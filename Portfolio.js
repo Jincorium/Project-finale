@@ -1,5 +1,6 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
+logout();
 
 function showAdminUI() {
   document.getElementById('adminPanel').style.display = 'block';
@@ -25,10 +26,9 @@ onUserStateChanged(user => {
     if (user.email === "admin@bonter.com") {
       showAdminUI();
     } else {
-      showNormalUI(user);  // pass user here
+      showNormalUI(user);  // <-- pass user here!
     }
   } else {
-    console.log("No user logged in");
     showLoginUI();
   }
 });
