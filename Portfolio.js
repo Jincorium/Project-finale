@@ -1,5 +1,5 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
-import { register, login, logout, onUserStateChanged } from "./src/api/firebaseAuth.js'";
+import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
 onUserStateChanged(user => {
   if (user) {
