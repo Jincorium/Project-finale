@@ -1,5 +1,25 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
+import { register, login, logout, onUserStateChanged } from "./api/firebaseAuth.js";
 
+onUserStateChanged(user => {
+  if (user) {
+    console.log("User signed in:", user.email);
+    // TODO: Show admin UI if user is admin, else show normal UI
+  } else {
+    console.log("No user signed in");
+    // TODO: Show login/register UI
+  }
+});
+
+// Example usage for login form submission
+async function handleLogin(email, password) {
+  try {
+    const user = await login(email, password);
+    console.log("Logged in user:", user.email);
+  } catch (error) {
+    console.error("Login error:", error.message);
+  }
+}
 
 
 const articleWrapper = document.getElementById("article-wrapper");
