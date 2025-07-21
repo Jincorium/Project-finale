@@ -28,6 +28,7 @@ onUserStateChanged(user => {
       showNormalUI(user);  // pass user here
     }
   } else {
+    console.log("No user logged in");
     showLoginUI();
   }
 });
