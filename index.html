@@ -24,6 +24,24 @@
 </div>
   </header>
 
+  <div id="adminPanel" style="display:none;">
+    <h2>Admin Dashboard</h2>
+    <!-- Admin controls go here -->
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <div id="userPanel" style="display:none;">
+    <h2>Welcome User</h2>
+    <!-- Normal user content -->
+    <button id="logoutBtnUser">Logout</button>
+  </div>
+
+  <form id="loginForm" style="display:none;">
+    <h2>Login</h2>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit" id="loginButton">Login</button>
+  </form>
 <div class="container">
     <aside>
     <nav>
