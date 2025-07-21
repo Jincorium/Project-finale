@@ -2,21 +2,21 @@ import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseSer
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
 function showAdminUI() {
-  // code to show admin dashboard, hide login form, etc.
-  console.log("Showing admin UI");
-  // e.g., document.getElementById('adminPanel').style.display = 'block';
+  document.getElementById('adminPanel').style.display = 'block';
+  document.getElementById('userPanel').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'none';
 }
 
 function showNormalUI() {
-  // code to show regular user UI, hide login form, etc.
-  console.log("Showing normal UI");
-  // e.g., document.getElementById('userPanel').style.display = 'block';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('userPanel').style.display = 'block';
+  document.getElementById('loginForm').style.display = 'none';
 }
 
 function showLoginUI() {
-  // code to show login/register forms, hide other panels
-  console.log("Showing login UI");
-  // e.g., document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('userPanel').style.display = 'none';
+  document.getElementById('loginForm').style.display = 'block';
 }
 
 onUserStateChanged(user => {
