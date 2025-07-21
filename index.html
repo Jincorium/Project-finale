@@ -23,17 +23,16 @@
   <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
 </div>
 
-    <div id="authContainers">
-    <!-- Add these UI containers for different user states -->
-  <div id="adminPanel" style="display:none;">
+     <div id="adminPanel" style="display:none;">
     <h2>Admin Dashboard</h2>
     <!-- Admin controls go here -->
     <button id="logoutBtn">Logout</button>
   </div>
 
   <div id="userPanel" style="display:none;">
-    <h2>Welcome, <span id="userName"></span></h2>
-    <button id="logoutBtn">Logout</button>
+    <h2>Welcome User</h2>
+    <!-- Normal user content -->
+    <button id="logoutBtnUser">Logout</button>
   </div>
 
   <form id="loginForm" style="display:none;">
@@ -42,7 +41,6 @@
     <input type="password" id="password" placeholder="Password" required />
     <button type="submit" id="loginButton">Login</button>
   </form>
-      </div>
   </header>
 
 <div class="container">
