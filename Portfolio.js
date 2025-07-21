@@ -116,30 +116,32 @@ toggleButton.addEventListener("click", () => {
 const listenButton = document.getElementById("listenButton");
 const articleContent = document.getElementById("article-content");
 
-let isSpeaking = false;
-let utterance;
+if (listenButton && articleContent) {
+  let isSpeaking = false;
+  let utterance;
 
-listenButton.addEventListener("click", () => {
-  if (isSpeaking) { // Pokud už mluvíme, zastavíme přehrávání
-    speechSynthesis.cancel();
-    isSpeaking = false;
-    listenButton.textContent = "🔊";
-    return;
-  }
+  listenButton.addEventListener("click", () => {
+    if (isSpeaking) { 
+      speechSynthesis.cancel();
+      isSpeaking = false;
+      listenButton.textContent = "🔊";
+      return;
+    }
 
-  const text = articleContent.innerText || articleContent.textContent; // Získání textu z obsahu článku
-  utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "en-US";
+    const text = articleContent.innerText || articleContent.textContent;
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
 
-  utterance.onend = () => { // Po skončení mluvení nastavíme stav
-    isSpeaking = false;
-    listenButton.textContent = "🔊";
-  };
+    utterance.onend = () => {
+      isSpeaking = false;
+      listenButton.textContent = "🔊";
+    };
 
-  speechSynthesis.speak(utterance); // Spustíme mluvení
-  isSpeaking = true;
-  listenButton.textContent = "⏹";
-});
+    speechSynthesis.speak(utterance);
+    isSpeaking = true;
+    listenButton.textContent = "⏹";
+  });
+}
 
 // Výpočet času čtení článku
 document.addEventListener("DOMContentLoaded", () => {
