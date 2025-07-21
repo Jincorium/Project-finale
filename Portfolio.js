@@ -7,7 +7,8 @@ function showAdminUI() {
   document.getElementById('loginForm').style.display = 'none';
 }
 
-function showNormalUI() {
+function showNormalUI(user) {
+  document.getElementById('userName').textContent = user.email || user.displayName || 'User';
   document.getElementById('adminPanel').style.display = 'none';
   document.getElementById('userPanel').style.display = 'block';
   document.getElementById('loginForm').style.display = 'none';
