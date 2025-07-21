@@ -22,6 +22,8 @@ const db = getFirestore(app);
 // Reference your collection (e.g. 'items')
 const collectionRef = collection(db, "items");
 
+export { app };
+
 // Create - Add a new document
 export async function addItem(data) {
   try {
@@ -68,3 +70,5 @@ export async function deleteItem(id) {
     console.error("Error deleting document: ", e);
   }
 }
+
+export { app };
