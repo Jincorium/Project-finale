@@ -8,7 +8,12 @@ function showAdminUI() {
 }
 
 function showNormalUI(user) {
-  document.getElementById('userName').textContent = user.email || user.displayName || 'User';
+  const userNameElem = document.getElementById('userName');
+  if (userNameElem) {
+    userNameElem.textContent = user.email || user.displayName || 'User';
+  } else {
+    console.warn('userName element not found');
+  }
   document.getElementById('adminPanel').style.display = 'none';
   document.getElementById('userPanel').style.display = 'block';
   document.getElementById('loginForm').style.display = 'none';
