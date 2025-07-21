@@ -258,33 +258,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Login form submit handler
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
 
-  try {
-    await login(email, password);  // call your Firebase login function
-    console.log("Login successful");
-    // The onUserStateChanged listener will handle UI update after login
-  } catch (error) {
-    console.error("Login failed", error);
-    alert("Login failed: " + error.message);
+      try {
+        await login(email, password);
+        console.log("Login successful");
+      } catch (error) {
+        console.error("Login failed", error);
+        alert("Login failed: " + error.message);
+      }
+    });
+  }
+
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', () => logout());
+  }
+
+  const logoutBtnUser = document.getElementById('logoutBtnUser');
+  if (logoutBtnUser) {
+    logoutBtnUser.addEventListener('click', () => logout());
   }
 });
-
-// Logout buttons (admin and user)
-const logoutBtn = document.getElementById('logoutBtn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', () => {
-    logout();
-  });
-}
-
-const logoutBtnUser = document.getElementById('logoutBtnUser');
-if (logoutBtnUser) {
-  logoutBtnUser.addEventListener('click', () => {
-    logout();
-  });
-}
