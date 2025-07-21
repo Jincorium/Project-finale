@@ -1,6 +1,5 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
-logout();
 
 function showAdminUI() {
   document.getElementById('adminPanel').style.display = 'block';
@@ -258,6 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Login form submit handler
 const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', async (e) => {
   e.preventDefault();
