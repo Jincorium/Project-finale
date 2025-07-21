@@ -1,13 +1,33 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
+function showAdminUI() {
+  // code to show admin dashboard, hide login form, etc.
+  console.log("Showing admin UI");
+  // e.g., document.getElementById('adminPanel').style.display = 'block';
+}
+
+function showNormalUI() {
+  // code to show regular user UI, hide login form, etc.
+  console.log("Showing normal UI");
+  // e.g., document.getElementById('userPanel').style.display = 'block';
+}
+
+function showLoginUI() {
+  // code to show login/register forms, hide other panels
+  console.log("Showing login UI");
+  // e.g., document.getElementById('loginForm').style.display = 'block';
+}
+
 onUserStateChanged(user => {
   if (user) {
-    console.log("User signed in:", user.email);
-    // TODO: Show admin UI
+    if (user.email === "admin@example.com") {  // replace with your admin email
+      showAdminUI();
+    } else {
+      showNormalUI();
+    }
   } else {
-    console.log("No user signed in");
-    // TODO: Show login/register UI
+    showLoginUI();
   }
 });
 
