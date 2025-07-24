@@ -1,20 +1,6 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
-const loginBtn = document.getElementById('loginBtn'); // your login button id
-const loginForm = document.getElementById('loginForm');
-
-if (loginBtn && loginForm) {
-  loginBtn.addEventListener('click', () => {
-    // Toggle visibility
-    if (loginForm.style.display === 'block') {
-      loginForm.style.display = 'none';
-    } else {
-      loginForm.style.display = 'block';
-    }
-  });
-}
-
 const ADMIN_EMAIL = "lobastovn04@gmail.com";
 
 function showAdminUI() {
