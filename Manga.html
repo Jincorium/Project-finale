@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manga Earthquake Prediction</title>
   <link rel="stylesheet" href="Portfolio.css" />
-<script type="module" src="Portfolio.js"></script>
-  <script type="module" src="./api/firebaseService.js"></script>
+
 
 </head>
 <body>
@@ -19,6 +18,17 @@
     <img src="https://www.donationalerts.com/img/header/logo.svg" alt="Donate" class="donation-icon" />
     </a>
   </div>
+    <div id="userPanel" style="display:none;">
+  <span id="userName"></span>
+  <button id="logoutBtnUser">Logout User</button>
+</div>
+
+<form id="loginForm" style="display:none;">
+  <input type="email" id="email" name="email" required placeholder="Email" />
+  <input type="password" id="password" name="password" required placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
+
     <div id="modeButtons">
   <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button> <!-- Tlačítko pro přepnutí tmavého režimu -->
 
@@ -113,5 +123,7 @@
     </div>
     </div>
   </main>
+  <script type="module" src="Portfolio.js"></script>
+  <script type="module" src="./api/firebaseService.js"></script>
 </body>
 </html>
