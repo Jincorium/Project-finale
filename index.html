@@ -19,7 +19,21 @@
     <img src="https://www.donationalerts.com/img/header/logo.svg" alt="Donate" class="donation-icon" />
     </a>
   </div>
+<div id="adminPanel" style="display:none;">
+  <!-- admin UI here -->
+  <button id="logoutBtn">Logout Admin</button>
+</div>
 
+<div id="userPanel" style="display:none;">
+  <span id="userName"></span>
+  <button id="logoutBtnUser">Logout User</button>
+</div>
+
+<form id="loginForm" style="display:none;">
+  <input type="email" id="email" name="email" required placeholder="Email" />
+  <input type="password" id="password" name="password" required placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
 
   </header>
    <div id="modeButtons"> <!-- Tlačítko pro přepnutí tmavého režimu -->
