@@ -1,22 +1,22 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
+const ADMIN_EMAIL = "admin@bonter.com";
+
 function showAdminUI() {
   document.getElementById('adminPanel').style.display = 'block';
   document.getElementById('userPanel').style.display = 'none';
   document.getElementById('loginForm').style.display = 'none';
 }
 
-function showNormalUI(user) {
-  const userNameElem = document.getElementById('userName');
-  if (userNameElem) {
-    userNameElem.textContent = user.email || user.displayName || 'User';
-  } else {
-    console.warn('userName element not found');
-  }
+function showUserUI(user) {
   document.getElementById('adminPanel').style.display = 'none';
   document.getElementById('userPanel').style.display = 'block';
   document.getElementById('loginForm').style.display = 'none';
+  const userNameElem = document.getElementById('userName');
+  if(userNameElem) {
+    userNameElem.textContent = user.email || user.displayName || 'User';
+  }
 }
 
 function showLoginUI() {
@@ -25,16 +25,44 @@ function showLoginUI() {
   document.getElementById('loginForm').style.display = 'block';
 }
 
+// Listen to auth state changes and update UI accordingly
 onUserStateChanged(user => {
-  if (user) {
-    if (user.email === "admin@bonter.com") {
+  if(user) {
+    if(user.email === ADMIN_EMAIL) {
       showAdminUI();
     } else {
-      showNormalUI(user);  // <-- pass user here!
+      showUserUI(user);
     }
   } else {
     showLoginUI();
   }
+});
+
+// Login form submit handler
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+  
+  try {
+    await login(email, password);
+    console.log("Logged in:", email);
+  } catch (error) {
+    alert("Login failed: " + error.message);
+  }
+});
+
+// Logout buttons (both admin and user panel)
+const logoutBtns = document.querySelectorAll('#logoutBtn, #logoutBtnUser');
+logoutBtns.forEach(btn => {
+  btn.addEventListener('click', async () => {
+    try {
+      await logout();
+      console.log("Logged out");
+    } catch (error) {
+      alert("Logout failed: " + error.message);
+    }
+  });
 });
 
 // DOM interactions
