@@ -138,6 +138,141 @@
           }
         }
       });
-    });</script>
+    });
+</script>
+  <style>
+  :root {
+    --bg-color: #e6f4f3;
+    --text-color: #1a1a1a;
+    --text-secondary: #ffffff;
+    --card-bg: #ffffff;
+    --background-tertiary: #99e7dfdc;
+    --box-color: #1d756e;
+
+    --button-bg: #333;
+    --button-text: #fff;
+
+    --color-1: #1d756e;
+    --color-4: #8e24aa;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+  }
+
+  #loginMenu {
+    background: var(--card-bg);
+    border: 2px solid var(--box-color);
+    padding: 20px 25px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 0 12px var(--box-color);
+    position: fixed;
+    top: 80px;
+    right: 40px;
+    display: none;
+    z-index: 1000;
+  }
+
+  #loginMenu label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+
+  #loginMenu input[type="email"],
+  #loginMenu input[type="password"] {
+    width: 100%;
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    border: 1.8px solid var(--box-color);
+    border-radius: 6px;
+    background: var(--background-tertiary);
+    color: var(--text-color);
+    font-size: 1rem;
+  }
+
+  #loginMenu input[type="email"]:focus,
+  #loginMenu input[type="password"]:focus {
+    border-color: var(--color-4);
+    outline: none;
+    background: #eaf5f4;
+  }
+
+  #loginMenu button {
+    background-color: var(--color-1);
+    color: var(--text-secondary);
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  #loginMenu button:hover {
+    background-color: var(--color-4);
+  }
+
+  #loginToggleBtn {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    background: var(--color-1);
+    color: var(--text-secondary);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 0 8px var(--box-color);
+    transition: background-color 0.3s ease;
+  }
+
+  #loginToggleBtn:hover {
+    background-color: var(--color-4);
+  }
+</style>
+
+<button id="loginToggleBtn">Login</button>
+
+<form id="loginMenu">
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required autocomplete="username" />
+  
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" required autocomplete="current-password" />
+  
+  <button type="submit">Sign In</button>
+</form>
+
+<script>
+  const loginToggleBtn = document.getElementById('loginToggleBtn');
+  const loginMenu = document.getElementById('loginMenu');
+
+  loginToggleBtn.addEventListener('click', () => {
+    loginMenu.style.display = loginMenu.style.display === 'block' ? 'none' : 'block';
+  });
+
+  loginMenu.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    try {
+      // Call your login function here
+      await login(email, password);  // assuming you imported or defined login()
+      alert('Logged in successfully!');
+      loginMenu.style.display = 'none';
+    } catch (err) {
+      alert('Login failed: ' + err.message);
+    }
+  });
+</script>
 </body>
 </html>
