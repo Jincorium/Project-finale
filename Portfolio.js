@@ -1,7 +1,7 @@
 import { addItem, getItems, updateItem, deleteItem } from './src/api/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './src/api/firebaseAuth.js';
 
-const ADMIN_EMAIL = "admin@bonter.com";
+const ADMIN_EMAIL = "lobastovn04@gmail.com";
 
 function showAdminUI() {
   document.getElementById('adminPanel').style.display = 'block';
