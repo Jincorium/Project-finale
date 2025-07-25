@@ -327,6 +327,19 @@ document.addEventListener("DOMContentLoaded", () => {
       div.innerHTML = `<strong>${escapeHtml(name)}</strong><p>${escapeHtml(comment)}</p>`;
       commentList.appendChild(div);
     }
+    if (articleId && commentList) {
+  // Subscribe to comments for this article
+  const unsubscribe = subscribeToComments(articleId, (comments) => {
+    commentList.innerHTML = ""; // Clear existing comments
+
+    comments.forEach(comment => {
+      const div = document.createElement("div");
+      div.classList.add("comment-entry"); // your existing styling class?
+      // Adjust fields as per your data structure
+      div.innerHTML = `<strong>${escapeHtml(comment.name)}</strong><p>${escapeHtml(comment.comment)}</p>`;
+      commentList.appendChild(div);
+    });
+  });
 
     function escapeHtml(text) {
       const div = document.createElement('div');
