@@ -19,9 +19,18 @@ let editingItemId = null;
 // Show admin or login UI depending on auth state
 onUserStateChanged(user => {
   if (user) {
-    loginPanel.style.display = "none";
-    adminPanel.style.display = "block";
-    loadItems();
+    if (adminEmails.includes(user.email)) {
+      // Show admin UI
+      loginPanel.style.display = "none";
+      adminPanel.style.display = "block";
+      loadItems();
+    } else {
+      // Show normal user UI or just hide admin panel
+      loginPanel.style.display = "none";
+      adminPanel.style.display = "none";
+      alert("You are logged in but you don't have admin access.");
+      // Optional: redirect or show a user-specific UI here
+    }
   } else {
     loginPanel.style.display = "block";
     adminPanel.style.display = "none";
