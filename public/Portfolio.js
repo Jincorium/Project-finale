@@ -1,69 +1,6 @@
 import { addItem, getItems, updateItem, deleteItem } from './firebase/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from './firebase/firebaseAuth.js';
 
-const ADMIN_EMAIL = "lobastovn04@gmail.com";
-
-function showAdminUI() {
-  document.getElementById('adminPanel').style.display = 'block';
-  document.getElementById('userPanel').style.display = 'none';
-  document.getElementById('loginForm').style.display = 'none';
-}
-
-function showUserUI(user) {
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('userPanel').style.display = 'block';
-  document.getElementById('loginForm').style.display = 'none';
-  const userNameElem = document.getElementById('userName');
-  if(userNameElem) {
-    userNameElem.textContent = user.email || user.displayName || 'User';
-  }
-}
-
-function showLoginUI() {
-  document.getElementById('adminPanel').style.display = 'none';
-  document.getElementById('userPanel').style.display = 'none';
-  document.getElementById('loginForm').style.display = 'block';
-}
-
-// Listen to auth state changes and update UI accordingly
-onUserStateChanged(user => {
-  if(user) {
-    if(user.email === ADMIN_EMAIL) {
-      showAdminUI();
-    } else {
-      showUserUI(user);
-    }
-  } else {
-    showLoginUI();
-  }
-});
-
-// Login form submit handler
-document.getElementById('loginForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const email = e.target.email.value;
-  const password = e.target.password.value;
-  
-  try {
-    await login(email, password);
-    console.log("Logged in:", email);
-  } catch (error) {
-    alert("Login failed: " + error.message);
-  }
-});
-
-// Logout buttons (both admin and user panel)
-const logoutBtns = document.querySelectorAll('#logoutBtn, #logoutBtnUser');
-logoutBtns.forEach(btn => {
-  btn.addEventListener('click', async () => {
-    try {
-      await logout();
-      console.log("Logged out");
-    } catch (error) {
-      alert("Logout failed: " + error.message);
-    }
-  });
-});
 
 // DOM interactions
 document.addEventListener("DOMContentLoaded", () => {
