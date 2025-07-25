@@ -1,7 +1,132 @@
 import { addItem, getItems, updateItem, deleteItem } from '/firebase/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from '/firebase/firebaseAuth.js';
 
+const adminPanel = document.getElementById("adminPanel");
+const loginPanel = document.getElementById("loginPanel");
+const loginForm = document.getElementById("loginForm");
+const logoutBtn = document.getElementById("logoutBtn");
 
+const itemsList = document.getElementById("itemsList");
+const itemForm = document.getElementById("itemForm");
+const itemIdInput = document.getElementById("itemId");
+const itemFieldInput = document.getElementById("itemField");
+const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+let editingItemId = null;
+
+// Show admin or login UI depending on auth state
+onUserStateChanged(user => {
+  if (user) {
+    loginPanel.style.display = "none";
+    adminPanel.style.display = "block";
+    loadItems();
+  } else {
+    loginPanel.style.display = "block";
+    adminPanel.style.display = "none";
+  }
+});
+
+// Load and display all items
+async function loadItems() {
+  itemsList.innerHTML = "<li>Loading...</li>";
+  try {
+    const items = await getItems(); // If you want to filter by articleId, add param here
+    itemsList.innerHTML = "";
+    items.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item.someField || "No data";
+
+      // Edit button
+      const editBtn = document.createElement("button");
+      editBtn.textContent = "Edit";
+      editBtn.style.marginLeft = "10px";
+      editBtn.onclick = () => startEditItem(item);
+
+      // Delete button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "Delete";
+      deleteBtn.style.marginLeft = "5px";
+      deleteBtn.onclick = () => deleteItemConfirmed(item.id);
+
+      li.appendChild(editBtn);
+      li.appendChild(deleteBtn);
+      itemsList.appendChild(li);
+    });
+  } catch (err) {
+    itemsList.innerHTML = "<li>Error loading items</li>";
+    console.error(err);
+  }
+}
+
+// Start editing an item
+function startEditItem(item) {
+  editingItemId = item.id;
+  itemIdInput.value = item.id;
+  itemFieldInput.value = item.someField || "";
+  cancelEditBtn.style.display = "inline";
+  itemFieldInput.focus();
+}
+
+// Cancel editing
+cancelEditBtn.onclick = () => {
+  editingItemId = null;
+  itemIdInput.value = "";
+  itemFieldInput.value = "";
+  cancelEditBtn.style.display = "none";
+};
+
+// Handle form submit for add or update
+itemForm.onsubmit = async (e) => {
+  e.preventDefault();
+  const someField = itemFieldInput.value.trim();
+  if (!someField) return alert("Please enter a value");
+
+  try {
+    if (editingItemId) {
+      // Update
+      await updateItem(editingItemId, { someField });
+      editingItemId = null;
+      cancelEditBtn.style.display = "none";
+    } else {
+      // Create
+      await addItem({ someField });
+    }
+    itemForm.reset();
+    loadItems();
+  } catch (err) {
+    alert("Error saving item");
+    console.error(err);
+  }
+};
+
+// Confirm and delete item
+async function deleteItemConfirmed(id) {
+  if (confirm("Are you sure you want to delete this item?")) {
+    try {
+      await deleteItem(id);
+      loadItems();
+    } catch (err) {
+      alert("Error deleting item");
+      console.error(err);
+    }
+  }
+}
+
+// Login form submit
+loginForm.onsubmit = async (e) => {
+  e.preventDefault();
+  const email = loginForm.email.value.trim();
+  const password = loginForm.password.value.trim();
+  try {
+    await login(email, password);
+    loginForm.reset();
+  } catch (err) {
+    alert("Login failed: " + err.message);
+  }
+};
+
+// Logout
+logoutBtn.onclick = () => logout();
 // DOM interactions
 document.addEventListener("DOMContentLoaded", () => {
   const articleWrapper = document.getElementById("article-wrapper");
