@@ -1,9 +1,8 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, where,onSnapshot } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCwWzwemKSXfByKDHhUKsqMe7YqTOga1t8",
+  apiKey: "AIzaSyCwWzwemKSXfByKDHhUKsqMe7qTOga1t8",
   authDomain: "testproject-d9e34.firebaseapp.com",
   databaseURL: "https://testproject-d9e34-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "testproject-d9e34",
@@ -22,7 +21,7 @@ const db = getFirestore(app);
 // Reference your collection (e.g. 'items')
 const collectionRef = collection(db, "items");
 
-export { app };
+export { app, db };  // export db here so you can import it elsewhere if needed
 
 // Create - Add a new document
 export async function addItem(data) {
@@ -34,21 +33,18 @@ export async function addItem(data) {
   }
 }
 
-// Read - Get all documents
-export async function getItems(articleId) {
-  try {
-    // Create query filtering by articleId field
-    const q = query(collectionRef, where("articleId", "==", articleId));
-    
-    const querySnapshot = await getDocs(q);
-    const items = [];
-    querySnapshot.forEach((doc) => {
-      items.push({ id: doc.id, ...doc.data() });
+// Real-time listener for comments filtered by articleId
+export function subscribeToComments(articleId, callback) {
+  const q = query(collectionRef, where("articleId", "==", articleId));
+  
+  // onSnapshot returns an unsubscribe function
+  return onSnapshot(q, (snapshot) => {
+    const comments = [];
+    snapshot.forEach(doc => {
+      comments.push({ id: doc.id, ...doc.data() });
     });
-    return items;
-  } catch (e) {
-    console.error("Error getting documents: ", e);
-  }
+    callback(comments);  // pass updated comments to your callback
+  });
 }
 
 // Update - Update a document by ID
@@ -70,4 +66,3 @@ export async function deleteItem(id) {
     console.error("Error deleting document: ", e);
   }
 }
-
