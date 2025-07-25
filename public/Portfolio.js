@@ -1,6 +1,8 @@
 import { addItem, getItems, updateItem, deleteItem } from '/firebase/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from '/firebase/firebaseAuth.js';
 
+
+const adminEmails = ["lobastovn04@gmail.com"];
 const adminPanel = document.getElementById("adminPanel");
 const loginPanel = document.getElementById("loginPanel");
 const loginForm = document.getElementById("loginForm");
