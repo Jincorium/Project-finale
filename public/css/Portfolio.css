@@ -153,6 +153,16 @@ font-weight: 700;
   height: calc(100vh - 56px);
 }
 
+header-support {
+  margin-right: 20px; /* Adds space to the right of the donation area */
+  display: inline-block; /* Make sure it doesn't stretch full width */
+  vertical-align: middle; /* Align nicely with other inline elements */
+}
+
+.donation-icon {
+  vertical-align: middle; /* Keep the image vertically centered */
+}
+
 /* Postranní panel */
 aside {
   position: sticky;
