@@ -1,0 +1,694 @@
+/* Barevné proměnné */
+:root {
+    /* Světlý režim */
+
+   /* Světlý režim */
+  --bg-color: #e6f4f3; /* pozadí stránky */
+  --text-color: #1a1a1a; /* hlavní barva textu */
+  --text-secondary: #ffffff; /* sekundární barva textu (např. nadpisy) */
+  --card-bg: #ffffff; /* pozadí karet */
+  --backfround-tertiary: #99e7dfdc; /* světle šedá pro karty */
+  --box-color: #1d756e; /* světlejší stín pro karty */
+
+  --header-bg: #1d756e;   /* tmavší tón záhlaví */
+  --sidebar-bg: #279e93;  /* o něco světlejší než záhlaví */
+
+  --tag-bg: #ddd; /* pozadí štítků */
+  --tag-text: #88289b; /* barva textu štítků */
+  --button-bg: #333; /* pozadí tlačítek */
+  --button-text: #fff; /* barva textu tlačítek */
+
+  /* Volitelné barevné témata */
+  --color-1: #1d756e;
+  --color-2: #43a047;
+  --color-3: #f4511e;
+  --color-4: #8e24aa;
+  --color-5: #fdd835;
+}
+
+/* Přepsání barev pro tmavý režim */
+body.dark-mode {
+  --bg-color: #121212; /* pozadí pro tmavý režim */
+  --text-color: #f1f1f1; /* světlá barva textu */
+  --text-secondary: #ffffff;
+  --card-bg: #1e1e1e; /* tmavší pozadí karet */
+  --backfround-tertiary: #414040; /* tmavší šedá */
+  --box-color: #ffffff;
+
+  --header-bg: #414040;   /* tmavší než sidebar */
+  --sidebar-bg: #2c2c2c;  /* o něco světlejší než pozadí */
+
+  --tag-bg: #444; /* tmavé pozadí štítků */
+  --tag-text: #ddd; /* světlý text štítků */
+  --button-bg: #e7e7e7; /* světlé pozadí tlačítek */
+  --button-text: #fff; /* bílý text tlačítek */
+}
+
+/* Resetování stylů */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /* Pozadí */
+  background-image: url('https://static.vecteezy.com/system/resources/previews/023/729/676/large_2x/newspaper-wallpaper-old-newspaper-background-generative-ai-photo.jpg');
+  background-size: cover;      /* pokrytí celé obrazovky */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Volitelné: přidání překryvu pro lepší čitelnost */
+  position: relative;
+  z-index: 0;
+}
+
+/* Základní styly pro tělo a html */
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Hlavní navigační lišta */
+header {
+  position: sticky;
+  top: 0;
+  background: var(--header-bg);
+  color: var(--text-secondary);
+  padding: 1rem;
+  z-index: 100;
+
+  /* Zarovnání textu a obrázku vedle sebe */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Zarovnání textu a obrázku vedle sebe */
+}
+
+header h1,  /* Hlavní nadpis */
+header .support-text {
+  font-size: 1.4rem;
+  margin: 0;
+  color: var(--text-secondary);
+font-weight: 700;
+}
+
+.header-support { /* Podpora text a logo */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* prostor mezi textem a logem */
+}
+
+.header-search {  /* Vyhledávací lišta */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.search-wrapper {
+ width: 600px;
+  max-width: 100%; /* responsivní, nepřeteče na menších obrazovkách */
+  padding: 0.5rem 1rem;
+  border-radius: 999px; /* tvar tablety */
+  border: 1px solid var(--text-secondary);
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+#searchInput:focus { /* Zvýraznění při zaměření */
+  border-color: var(--color-1);
+  box-shadow: 0 0 0 3px rgba(29, 117, 110, 0.3);
+}
+#searchInput { /* Styl pro vyhledávací vstup */
+  width: 600px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 999px; /* tvar tablety */
+  border: 1px solid var(--text-secondary);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+#searchResultBox { /* Styl pro vyhledávací výsledky */
+  margin-top: 6px;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  font-weight: 600;
+  display: none;
+}
+.donation-icon {
+  height: 36px; /* Menší, konzistentní velikost */
+  width: auto;
+  margin-left: 1rem;
+}
+
+
+
+/* Kontejner se postranním panelem a hlavním obsahem */
+.container {
+  display: flex;
+  height: calc(100vh - 56px);
+}
+
+/* Postranní panel */
+aside {
+  position: sticky;
+  top: 56px;
+  width: 160px;
+  background: var(--sidebar-bg);
+  color: var(--text-secondary);
+  height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  
+}
+
+aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;  /* posune odkazy dolů */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+aside nav ul li + li { /* mezera mezi položkami */
+  margin-top: 1rem;
+}
+
+aside nav a { /* Odkazy v postranním panelu */
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+aside nav a:hover {
+  text-decoration: underline;
+}
+#sidebarSecondary.sidebar-hidden {
+  display: none;           /* skrytý */
+  position: fixed;         /* pevný překryv */
+  top: 72px;               /* pod záhlavím */
+  left: 0;
+  width: 160px;
+  height: calc(100vh - 72px);
+  background: var(--sidebar-bg);
+  flex-direction: column;
+  padding-left: 1rem;
+  z-index: 10000;          /* velmi vysoké, aby bylo nahoře */
+  box-shadow: 2px 0 8px rgba(0,0,0,0.2); /* jemný stín */
+}
+/* Sidebar viditelný */
+#sidebarSecondary.sidebar-visible {
+  display: flex;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 160px;
+  height: calc(100vh - 72px);
+  background: var(--sidebar-bg);
+  flex-direction: column;
+  padding-left: 1rem;
+  z-index: 10000;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+}
+
+/* Hlavní obsah */
+main {
+  flex: 1;
+  background: var(--bg-color);
+  padding: 1rem 2rem;
+  overflow-y: auto;
+}
+
+
+/* Karta */
+.card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.card img, 
+.video-wrapper {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+  position: relative;
+}
+.video-wrapper {
+  position: relative;
+  cursor: pointer;
+  background-color: #000; /* pokud není obrázek */
+}
+
+.video-wrapper::after {
+  font-size: 3rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.video-wrapper:hover::after { /* Zvýraznění při najetí myší */
+  opacity: 1;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  flex-grow: 0;
+}
+
+.tags { /* Tagy */
+  padding: 0 1rem 1rem;
+  color: var(--tag-text);
+}
+
+.tags span {
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+
+/* Video wrapper */
+.video-wrapper iframe {
+  width: 100% !important;
+  height: 240px !important;
+  border-radius: 6px 6px 0 0;
+  display: block;
+}
+
+/* Tlačítko pro přehrávání */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  z-index: 10;
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  left: 22px;
+  top: 16px;
+  border-style: solid;
+  border-width: 14px 0 14px 24px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Tlačítko pro přepínání tmavého režimu */
+#darkModeToggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#darkModeToggle:hover {
+  background: var(--header-bg);
+}
+
+
+/* Tlačítka pro přepínání režimů */
+#modeButtons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;  /* prostor mezi tlačítky */
+  z-index: 1001;
+}
+
+
+.tags span {
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Aktivní styl pro tagy v světlém režimu */
+.tags span.active {
+  background: var(--color-1); /* nebo jakákoliv zvýrazňující barva */
+  color: white;
+}
+
+/* Aktivní styl pro tagy v tmavém režimu */
+body.dark-mode .tags span.active {
+  background: #3aafa9; /* nebo jakákoliv zvýrazňující barva */
+  color: #f1f1f1;
+}
+
+/* Odkazy na karty */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.card-link:hover {
+  text-decoration: none;
+}
+
+/* Tlačítko pro poslech článku */
+#listenButton {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#listenButton:hover {
+  background-color: #1565c0;
+}
+/* Karta */
+.articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+#article-content { /* Obsah článku */
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+#article-content h1 { /* Hlavní nadpis článku */
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#article-content h2 { /* Podnadpisy */
+  font-size: 1.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+#article-content p {
+  margin-bottom: 1.2rem;
+}
+#article-wrapper {  /* Kontejner pro článek */
+  position: relative;
+  background-color: (--text-secondary); /* bílá s mírnou průhledností */
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 2px 10px 16px var(--header-bg);
+  color: var(--text-color);
+  z-index: 1;
+
+  /* Přidání novinových sloupců */
+  column-count: 2;
+  column-gap: 2rem;
+  column-rule: 1px solid rgba(0,0,0,0.1);
+}
+#article-wrapper h1,
+#article-wrapper h2 {
+  column-span: all;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+#article-wrapper p {
+  position: relative;
+  padding-top: 12px; /* prostor pro obdélník */
+  margin-bottom: 1.3rem;  /* prostor mezi odstavci */
+}
+ 
+/* Přidání obdélníku před každý odstavec */
+#article-wrapper p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 6px;
+  background-color: var(--color-1);
+  border-radius: 2px;
+} 
+/* Obrázky v článku */
+#article-wrapper img {
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Postranní akce */
+.side-actions {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  width: fit-content;
+  background: var(--card-bg);
+  padding: 0.5rem;
+  border-radius: 8%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+/* Tlačítka pro postranní akce */
+.side-button,
+.back-link {
+  background-color: var(--header-bg);
+  color: var(--button-text);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.0rem;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 117, 110, 0.3);
+}
+
+.side-button:hover,
+.back-link:hover {
+  background-color: var(--button-bg-hover, #555);
+}
+
+#listenButton {
+  background: var(--header-bg);
+  color: var(--button-text);
+}
+
+#listenButton:hover {
+  background: var(--button-bg-hover, #555);
+}
+
+#likeButton {
+  color: rgba(255, 0, 0, 0.6); /* světle červená jako výchozí */
+   transform: scale(1.05);
+}
+
+#likeButton.liked {
+  color: red;
+  transform: scale(1.05);
+}
+
+/* Modální okno pro komentáře */
+.comment-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Skrytí modálního okna */
+.comment-modal.hidden {
+  display: none;
+}
+
+/* Obsah modálního okna */
+.comment-box {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 350px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  color: var(--text-se);
+  font-family: inherit;
+}
+
+.comment-box h3 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.comment-box label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Styl pro vstupy a textové oblasti v modálním okně */
+.comment-box input,
+.comment-box textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.comment-box textarea {
+  height: 100px;
+}
+
+.comment-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Tlačítka v modálním okně */
+.comment-buttons button {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--header-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.comment-buttons button:hover {
+  background: var(--button-bg-hover, #555);
+}
+
+/* Styl pro komentáře */
+.comment-divider {
+  border: none;
+  border-top: 4px solid var(--sidebar-bg); /* Use your theme color */
+  margin: 2rem 0 1rem;
+  opacity: 0.3;
+}
+
+.comments-section {
+ margin: 0 auto;
+  max-width: 900px;
+  padding: 0 1rem;
+}
+
+.comments-section h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  padding-left: 0.25rem; /* align with <p> tag text */
+}
+
+/* Styl pro jednotlivé komentáře */
+.comment-entry {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--backfround-tertiary);
+  border-left: 4px solid var(--box-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Styl pro jméno komentujícího */
+.layout-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) { /* Pro menší obrazovky */
+  .layout-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .side-actions {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: none;
+    background: transparent;
+  }
+}
+.comments-heading { /* Nadpis sekce komentářů */
+  margin-bottom: 1.0rem;
+}
+
+.qr-wrapper {   /* Kontejner pro QR kód */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.qr-image { /* Styl pro QR kód */
+  width: 50px;
+  height: 50px;
+}
+
