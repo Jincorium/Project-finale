@@ -1,5 +1,5 @@
-import { addItem, getItems, updateItem, deleteItem } from './firebase/firebaseService.js';
-import { register, login, logout, onUserStateChanged } from './firebase/firebaseAuth.js';
+import { addItem, getItems, updateItem, deleteItem } from 'public/firebase/firebaseAuth.js';
+import { register, login, logout, onUserStateChanged } from 'public/firebase/firebaseAuth.js';
 
 
 // DOM interactions
