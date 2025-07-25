@@ -142,7 +142,11 @@
   </main>
 </body>
   <script type="module" src="/Portfolio.js"></script>
-  <script>
-  document.querySelector('.header-search').style.display = 'none';
+<script>
+  const headerSearch = document.querySelector('.header-search');
+  if (headerSearch) {
+    headerSearch.style.visibility = 'hidden';
+    headerSearch.style.width = '200px'; // Keep spacing consistent
+  }
 </script>
 </html>
