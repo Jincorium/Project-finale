@@ -3,6 +3,7 @@ import { register, login, logout, onUserStateChanged } from '/firebase/firebaseA
 
 
 const adminEmails = ["lobastovn04@gmail.com"];
+const logoutBtn = document.getElementById("logoutBtn");
 const adminPanel = document.getElementById("adminPanel");
 const loginPanel = document.getElementById("loginPanel");
 const loginForm = document.getElementById("loginForm");
@@ -17,23 +18,24 @@ const cancelEditBtn = document.getElementById("cancelEditBtn");
 let editingItemId = null;
 
 // Show admin or login UI depending on auth state
+
 onUserStateChanged(user => {
   if (user) {
+    loginPanel.style.display = "none";
+
     if (adminEmails.includes(user.email)) {
-      // Show admin UI
-      loginPanel.style.display = "none";
       adminPanel.style.display = "block";
-      loadItems();
     } else {
-      // Show normal user UI or just hide admin panel
-      loginPanel.style.display = "none";
       adminPanel.style.display = "none";
       alert("You are logged in but you don't have admin access.");
-      // Optional: redirect or show a user-specific UI here
+      // Optionally show user panel here
     }
+
+    logoutBtn.style.display = "inline-block";  // Show logout for all logged in users
   } else {
     loginPanel.style.display = "block";
     adminPanel.style.display = "none";
+    logoutBtn.style.display = "none";  // Hide logout when logged out
   }
 });
 
