@@ -1,5 +1,5 @@
 import { addItem, getItems, updateItem, deleteItem } from 'firebase/firebaseService.js';
-import { register, login, logout, onUserStateChanged } from 'firebase/firebaseService.js';
+import { register, login, logout, onUserStateChanged } from 'firebase/firebaseAuth.js';
 
 const ADMIN_EMAIL = "lobastovn04@gmail.com";
 
