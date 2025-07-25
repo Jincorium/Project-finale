@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manga Earthquake Prediction</title>
+  <link rel="stylesheet" href="Portfolio.css" />
+</head>
+<body>
+  <header>
+    <h1>Independent yet biased</h1>
+      <div class="header-search">         <!-- Pole pro hledání článků -->
+        <input type="text" id="searchInput" placeholder="Search articles..." />
+      </div>
+    <div class="header-support">
+    <h1 class="support-text">Support our biases</h1>
+     <a href="https://www.donationalerts.com/" target="_blank">
+    <img src="https://www.donationalerts.com/img/header/logo.svg" alt="Donate" class="donation-icon" />
+    </a>
+  </div>
+<div id="adminPanel" style="display:none;">
+  <!-- admin UI here -->
+  <button id="logoutBtn">Logout Admin</button>
+</div>
+
+<div id="userPanel" style="display:none;">
+  <span id="userName"></span>
+  <button id="logoutBtnUser">Logout User</button>
+</div>
+
+<form id="loginForm" style="display:none;">
+  <input type="email" id="email" name="email" required placeholder="Email" />
+  <input type="password" id="password" name="password" required placeholder="Password" />
+  <button type="submit">Login</button>
+</form>
+
+  </header>
+   <div id="modeButtons"> <!-- Tlačítko pro přepnutí tmavého režimu -->
+  <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
+</div>
+
+
+<div class="container">
+    <aside>
+    <nav>
+        <ul>
+        <li><a href="index.html">Recent</a></li>
+        <li><a href="https://www.instagram.com/barackobama/" target="_blank" rel="noopener noreferrer">About US</a></li>
+        <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="qr-wrapper">   <!-- QR kód na podporu nebo kontakt -->
+        <img src="qr-code.png" alt="QR Code" class="qr-image" />
+    </div>
+    </aside>
+
+  <main>  
+    <div id="searchResultBox" style="display: none; margin-top: 10px; font-weight: bold;"></div>
+    <div class="articles">
+<article class="card">
+  <a href="Manga.html" class="card-link">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimaginarytalks.com%2Fwp-content%2Fuploads%2F2025%2F01%2Fthe-future-I-saw-702x526.jpg&f=1&nofb=1&ipt=6c26ccca2d51ee7f346b3046e41d889d6dfffcce369bd33b644eebb377a82645" alt="Article 1" />
+    <h2>Japan's people concern over earthquake predicted by manga</h2>
+  </a>
+  <div class="tags">
+    <span class="tag" data-tag="japan">#Japan</span>
+    <span class="tag" data-tag="manga">#Manga</span>
+    <span class="tag" data-tag="profecy">#Profecy</span>
+    <span class="tag" data-tag="earthquake">#Earthquake</span>
+  </div>
+</article>
+
+      <article class="card video-card" data-video-id="f9u63nHzMuY">
+  <div class="video-wrapper" style="cursor: pointer;">
+    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.foxnews.com%2Ffoxnews.com%2Fcontent%2Fuploads%2F2025%2F07%2Fxi-jinping-brics-2024i.jpg&f=1&nofb=1&ipt=05f9ba476685c014392fc91a5f776282da928c0d1fa7cf1eec39bca63323c57f" alt="Article 2" />
+    <button class="play-button" aria-label="Play Video"></button>
+  </div>
+  <h2>Xi Says China to Boost Macro Policy Support</h2>
+  <div class="tags">
+    <span class="tag" data-tag="china">#China</span>
+    <span class="tag" data-tag="economy">#economy</span>
+  </div>
+</article>
+
+      <article class="card">
+        <a href="Osaka.html" class="card-link">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.dLIL8Z7toIAJjQ1qdZZ9oQHaEK%3Fpid%3DApi&f=1&ipt=2f16b79b488c7012320e9e630141c4a249985a148597377367ab4e2fffa157b4" alt="Article 3" />
+        <h2>Osaka Expo 2025 What to Expect?</h2>
+        </a>
+        <div class="tags">
+          <span class="tag" data-tag="japan">#Japan</span>
+          <span class="tag" data-tag="osaka">#Osaka</span>
+          <span class="tag" data-tag="expo">#Expo</span>
+          <span class="tag" data-tag="2025">#2025</span>
+        </div>
+      </article>
+    </div>
+  </main>
+</div>
+<script>  // Po načtení stránky čekáme, až uživatel začne hledat
+      document.addEventListener("DOMContentLoaded", () => {
+      const searchInput = document.getElementById("searchInput");
+      const articles = document.querySelectorAll(".articles article.card");
+      const resultBox = document.getElementById("searchResultBox");
+
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault(); // prevent form submission or other effects
+
+          const query = searchInput.value.trim().toLowerCase();
+          let matchCount = 0;
+
+          articles.forEach(article => {
+            const title = article.querySelector("h2").textContent.toLowerCase();
+            const tags = [...article.querySelectorAll(".tag")].map(t => t.textContent.toLowerCase());
+
+            // Jestli název nebo tagy obsahují hledaný text, zobrazíme článek
+            if (title.includes(query) || tags.some(tag => tag.includes(query))) {
+              article.style.display = "";
+              matchCount++;
+            } else {
+              article.style.display = "none"; // Jinak schováme
+            }
+          });
+
+          if (query === "") {
+            resultBox.style.display = "none"; // Když je prázdné hledání, výsledky nezobrazujeme
+            resultBox.textContent = "";
+          } else if (matchCount === 0) {
+            resultBox.style.display = "block";
+            resultBox.textContent = "No articles found matching your search.";
+          } else {
+            resultBox.style.display = "none"; // Když je nějaký výsledek, skryjeme zprávu
+            resultBox.textContent = "";
+          }
+        }
+      });
+    });
+</script>
+  <script type="module" src="/Portfolio.js"></script>
+</body>
+</html>
