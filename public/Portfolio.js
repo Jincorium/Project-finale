@@ -25,17 +25,16 @@ onUserStateChanged(user => {
 
     if (adminEmails.includes(user.email)) {
       adminPanel.style.display = "block";
+      userLogoutPanel.style.display = "none"; // hide this if admin panel has logout
     } else {
       adminPanel.style.display = "none";
+      userLogoutPanel.style.display = "block"; // show logout for normal user
       alert("You are logged in but you don't have admin access.");
-      // Optionally show user panel here
     }
-
-    logoutBtn.style.display = "inline-block";  // Show logout for all logged in users
   } else {
     loginPanel.style.display = "block";
     adminPanel.style.display = "none";
-    logoutBtn.style.display = "none";  // Hide logout when logged out
+    userLogoutPanel.style.display = "none";
   }
 });
 
