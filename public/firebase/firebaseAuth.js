@@ -1,5 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-import { app } from "./firebaseService.js"; // assuming you export your initialized app from firebaseService.js
+import { app } from "/public/firebaseService.js"; // assuming you export your initialized app from firebaseService.js
 
 const auth = getAuth(app);
 
