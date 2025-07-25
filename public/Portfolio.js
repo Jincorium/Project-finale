@@ -7,7 +7,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 const adminPanel = document.getElementById("adminPanel");
 const loginPanel = document.getElementById("loginPanel");
 const loginForm = document.getElementById("loginForm");
-const logoutBtn = document.getElementById("logoutBtn");
+
 
 const itemsList = document.getElementById("itemsList");
 const itemForm = document.getElementById("itemForm");
