@@ -1,13 +1,16 @@
 import { addItem, getItems, updateItem, deleteItem } from '/firebase/firebaseService.js';
 import { register, login, logout, onUserStateChanged } from '/firebase/firebaseAuth.js';
 
-
 const adminEmails = ["lobastovn04@gmail.com"];
-const logoutBtn = document.getElementById("logoutBtn");
+
 const adminPanel = document.getElementById("adminPanel");
 const loginPanel = document.getElementById("loginPanel");
-const loginForm = document.getElementById("loginForm");
+const userLogoutPanel = document.getElementById("userLogoutPanel");
 
+const adminLogoutBtn = document.getElementById("adminLogoutBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+
+const loginForm = document.getElementById("loginForm");
 
 const itemsList = document.getElementById("itemsList");
 const itemForm = document.getElementById("itemForm");
@@ -15,21 +18,21 @@ const itemIdInput = document.getElementById("itemId");
 const itemFieldInput = document.getElementById("itemField");
 const cancelEditBtn = document.getElementById("cancelEditBtn");
 
-let editingItemId = null;
+adminLogoutBtn.onclick = () => logout();
+logoutBtn.onclick = () => logout();
 
-// Show admin or login UI depending on auth state
+let editingItemId = null;
 
 onUserStateChanged(user => {
   if (user) {
     loginPanel.style.display = "none";
-
     if (adminEmails.includes(user.email)) {
       adminPanel.style.display = "block";
-      userLogoutPanel.style.display = "none"; // hide this if admin panel has logout
+      userLogoutPanel.style.display = "none"; // hide user logout button for admin
     } else {
       adminPanel.style.display = "none";
-      userLogoutPanel.style.display = "block"; // show logout for normal user
       alert("You are logged in but you don't have admin access.");
+      userLogoutPanel.style.display = "block"; // show user logout button for normal users
     }
   } else {
     loginPanel.style.display = "block";
@@ -37,7 +40,6 @@ onUserStateChanged(user => {
     userLogoutPanel.style.display = "none";
   }
 });
-
 // Load and display all items
 async function loadItems() {
   itemsList.innerHTML = "<li>Loading...</li>";
