@@ -18,16 +18,31 @@
           <img src="https://www.donationalerts.com/img/header/logo.svg" alt="Donate" class="donation-icon" />
         </a>
       </div>
-      <div id="userPanel" style="display:none;">
-  <span id="userName"></span>
-  <button id="logoutBtnUser">Logout User</button>
+    <div id="adminPanel" style="display:none;">
+  <h2>Admin Panel</h2>
+
+  <form id="itemForm">
+    <input type="hidden" id="itemId" />
+    <input type="text" id="itemField" placeholder="Enter some field" required />
+      <button id="adminLogoutBtn">Logout</button>
+    <button type="submit">Save Item</button>
+    <button type="button" id="cancelEditBtn" style="display:none;">Cancel</button>
+  </form>
+
+  <ul id="itemsList"></ul>
 </div>
 
-<form id="loginForm" style="display:none;">
-  <input type="email" id="email" name="email" required placeholder="Email" />
-  <input type="password" id="password" name="password" required placeholder="Password" />
-  <button type="submit">Login</button>
-</form>
+<div id="loginPanel">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+</div>
+    <div id="userLogoutPanel" style="display:none;">
+  <button id="logoutBtn">Logout</button>
+</div>
 
     </header>
       <aside id="sidebarSecondary" class="sidebar-hidden">
